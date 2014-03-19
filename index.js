@@ -20,8 +20,11 @@ _3vot.init = function(options){
   _3vot.package = options.package
   _3vot.endpoint = options.endpoint || _3vot.endpoint
   
+  if(!window._3vot) window._3vot = {}
   window._3vot.endpoint = _3vot.endpoint;
   
+  if( !options.loginProviders ) return options.app()
+
   _3votLogin.registerProviders(options.loginProviders);
 
   _3votLogin.loginWithAllProviders( function(err){
