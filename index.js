@@ -25,7 +25,8 @@ _3vot.init = function(options){
   
   if(window && !window._3vot) window._3vot = _3vot
   
-  if( !options.loginProviders && options.loginProviders.length > 0 ) return _3vot.app()
+  if( !options.loginProviders ) return _3vot.app()
+  if( options.loginProviders.length == 0 ) return _3vot.app()
 
   _3votLogin.registerProviders(options.loginProviders);
 
