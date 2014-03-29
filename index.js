@@ -1,5 +1,7 @@
 var _3vot = {};
 _3vot.endpoint = "http://backend.3vot.com/v1";
+_3vot.frontpoint = "https://daulau2emlz5i.cloudfront.net";
+_3vot.host = _3vot.frontpoint.split("://")[1];
 _3vot.loginProviders = {};
 _3vot.logins = {};
 _3vot.package = {};
@@ -19,11 +21,11 @@ _3vot.init = function(options){
   _3vot.initOptions = options;
   _3vot.package = options.package
   _3vot.endpoint = options.endpoint || _3vot.endpoint
+  _3vot.app = options.app
   
-  if(!window._3vot) window._3vot = {}
-  window._3vot.endpoint = _3vot.endpoint;
+  if(window && !window._3vot) window._3vot = _3vot
   
-  if( !options.loginProviders ) return options.app()
+  if( !options.loginProviders && options.loginProviders.length > 0 ) return _3vot.app()
 
   _3votLogin.registerProviders(options.loginProviders);
 
@@ -32,7 +34,7 @@ _3vot.init = function(options){
     
     _3votDependency.loadDependency( function(err) {
       if(err) return alert("An Error occured trying to load dependencies");
-      options.app()
+      _3vot.app()
     });
 
   });
