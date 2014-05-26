@@ -22,8 +22,8 @@ function init(package, options){
   _3vot.user_name = package.threevot.user_name;
   _3vot.endpoint= options.endpoint || "http://backend.3vot.com/v1";
   _3vot.frontpoint= options.frontpoint || "http://daulau2emlz5i.cloudfront.net";
-  _3vot.domain= options.domain || "//daulau2emlz5i.cloudfront.net";
-  _3vot.path= _3vot.domain+"/"+_3vot.user_name+"/"+package.name+"_11"
+  _3vot.domain= options.domain || "//3vot.com";
+  _3vot.path= _3vot.domain+"/"+_3vot.user_name+"/"+package.name
   _3vot.host= _3vot.frontpoint.split("://")[1]
   _3vot.el = document.getElementById('_3vot_' + package.name);
   _3vot.app = package.name;
