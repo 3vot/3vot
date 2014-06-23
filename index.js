@@ -22,8 +22,8 @@ function init(package, options){
   _3vot.user_name = package.threevot.user_name;
   _3vot.endpoint= options.endpoint || "http://backend.3vot.com/v1";
   _3vot.frontpoint= options.frontpoint || "http://daulau2emlz5i.cloudfront.net";
-  _3vot.domain= options.domain || "//3vot.com";
-  _3vot.path= _3vot.domain+"/"+_3vot.user_name+"/"+package.name;
+  _3vot.domain= ""; //options.domain || "//3vot.com";
+  _3vot.path= package.name; //_3vot.domain+"/"+_3vot.user_name+"/"+package.name;
   _3vot.host= _3vot.frontpoint.split("://")[1];
   _3vot.el = document.getElementById('_3vot_' + package.name);
   _3vot.app = package.name;
@@ -49,12 +49,6 @@ function fileToLoad(){
     }
   }
 
-  if(width <= 550) _3vot.device = "phone";
-  else if(width <= 1024) _3vot.device = "tablet";
-  else if(width > 1024) _3vot.device = "desktop";
-  else _3vot.device = "desktop";
-
-
   if(!fileToLoad) return console.error("Could not determine a file to load from package.json threevot.screens. 3VOT will load index.js please fix package.json of your app.");
   return fileToLoad;
 }
@@ -63,7 +57,7 @@ function loadFile(fileToCall){
   if(!fileToCall) return false;
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src = _3vot.path + '/' + fileToCall + '.js?' + _3vot.unique_query_string;    
+  script.src =  fileToCall + '.js?' + _3vot.unique_query_string;    
 
   document.getElementsByTagName('head')[0].appendChild(script);
 
