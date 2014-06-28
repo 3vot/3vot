@@ -57,7 +57,7 @@ function loadFile(fileToCall){
   if(!fileToCall) return false;
   var script = document.createElement('script');
   script.type = 'text/javascript';
-  script.src =  fileToCall + '.js?' + _3vot.unique_query_string;    
+  script.src =  "*/" + fileToCall + '.js?' + _3vot.unique_query_string;    
 
   document.getElementsByTagName('head')[0].appendChild(script);
 
