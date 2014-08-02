@@ -41,15 +41,17 @@ function fileToLoad(){
   //  }
 
   var fileToLoad = "index";
-  var width = document.documentElement.clientWidth;
+  var width = _3vot.width = document.documentElement.clientWidth;
+  var height = _3vot.height = document.documentElement.clientHeight;
   for(entry in entries){
     var borders = entry.split("-");
     if(width > parseInt(borders[0]) && width <= parseInt(borders[1]) ){
-      fileToLoad = entries[entry];
+      fileToLoad = _3vot.device = entries[entry];
     }
   }
 
   if(!fileToLoad) return console.error("Could not determine a file to load from package.json threevot.screens. 3VOT will load index.js please fix package.json of your app.");
+  _3vot.el.classList.add(fileToLoad);
   return fileToLoad;
 }
 
