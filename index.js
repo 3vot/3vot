@@ -1,6 +1,10 @@
 window = window || { location: { hostname: "3vot.com", protocol: "http" } };
 
-window._3vot = {
+window._3vot = window._3vot || {};
+
+module.exports= init;
+
+var  _3vot = {
   el: null,
   package: {},
   initOptions: {},
@@ -11,8 +15,6 @@ window._3vot = {
   user_name: "",
   unique_query_string: "unique_domain=" + window.location.protocol + window.location.hostname
 };
-
-module.exports= init;
 
 function init(package, options){
   if(!options) options = {};
@@ -28,6 +30,7 @@ function init(package, options){
   _3vot.el = document.getElementById('_3vot_' + package.name);
   _3vot.app = package.name;
   loadFile( fileToLoad() );
+  window._3vot[package.name] = _3vot;
 }
 
 function fileToLoad(){
@@ -41,8 +44,8 @@ function fileToLoad(){
   //  }
 
   var fileToLoad = "index";
-  var width = _3vot.width = document.documentElement.clientWidth;
-  var height = _3vot.height = document.documentElement.clientHeight;
+  var width = _3vot.width = _3vot.el.offsetWidth || _3vot.el.clientWidth;
+  var height = _3vot.height = _3vot.el.offsetHeight || _3vot.el.clientHeight;
   for(entry in entries){
     var borders = entry.split("-");
     if(width > parseInt(borders[0]) && width <= parseInt(borders[1]) ){
